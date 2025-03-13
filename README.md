@@ -34,6 +34,7 @@ data/retronyms.csv
 ## Reddit Data Collection
 
 Data collection was performed based on the code taken and adapted from: https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/combine_folder_multiprocess.py.
+The code creates a new zst. file every 100.000 lines, numbering them progressively. 
 
 ```
 data_collection/parallel_process.py
@@ -46,8 +47,12 @@ Tab and html characters, as well as numbers, extra white space and other charact
 Comments containing "i am a bot" or shorter than three words are also removed.
 
 ```
-preprocessing/cleaning_comments.py
+1. preprocessing/cleaning_comments.py
 ```
+
+One jsonl file is created for each subreddit-year combination.
+
+2.
 
 3. Lexical Semantic Change Detection Experiments:
 
