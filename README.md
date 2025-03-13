@@ -66,6 +66,16 @@ GENERIC and SUSTAINABLE communities are in turn created by merging subreddit fil
 ```
 4. preprocessing/merge_communities.py
 ```
+Comments containing noise are removed.
+
+```
+5. preprocessing/remove_noisy_kw.py
+```
+Finally, time slots t0 and t1, as well as whole communities' corpora are created, by merging years of the same subreddits.
+
+```
+6. preprocessing/create_corpora.py
+```
 
 ## Corpus Study: Bigram Analysis
 
