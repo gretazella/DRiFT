@@ -10,7 +10,7 @@ from nltk import word_tokenize
 from nltk import sent_tokenize
 import re
 
-all_files = os.listdir(directory_input)
+all_files = os.listdir(input_folder)
 filtered_files.sort()
 
 noise_file = "../data/noise.csv"
@@ -28,13 +28,13 @@ def remove_noise(input_folder, output_folder):
       
       name_file = f.split('.')[0]
           
-      with open(directory_output + name_file + '_no_noise' + '.csv', 'w') as csv_file:
+      with open(output_folder + name_file + '_no_noise' + '.csv', 'w') as csv_file:
           writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
           writer.writerow(['comment', 'id'])
           
           comment_id = 0 
           
-          df = pd.read_json(directory_input+f,lines=True)  
+          df = pd.read_json(input_folder+f,lines=True)  
           
           for index, row in df.iterrows():
               
