@@ -31,6 +31,6 @@ def merge_sub_years(input_folder):
                     df.to_json(output_path, orient='records', lines=True)
                 except pd.errors.EmptyDataError:
                     print(f"Warning: Empty file encountered: {file_path}")
-
-merge_sub_years(input_folder)
 input_folder=""
+merge_sub_years(input_folder)
+
