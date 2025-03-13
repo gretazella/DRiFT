@@ -6,12 +6,23 @@ import multiprocessing
 from multiprocessing import Pool
 from pathlib import Path
 from nltk import word_tokenize
-
+import csv
 import zstandard
 from jsonlines import Writer
 from tqdm import tqdm
 
-SELECTED_SUBREDDITS = set(['food', 'Cooking','Baking', 'vegan', 'vegetarian', 'PlantBasedDiet', 'Showerthoughts', 'AskReddit', 'mildlyinfuriating', 'unpopularopinion', 'meat', 'burgers', 'steak', 'AntiVegan', 'zerocarb', 'carnivore', 'Cheese', 'Milk', 'carnivorediet', 'exvegans', 'tonightsdinner', '52weeksofcooking', 'AskCulinary', 'recipes', 'seriouseats', 'Old_Recipes', 'RecipeInspiration', 'vegancirclejerk', 'environment', 'greenhouse', 'Pescetarian', 'dairyfree', 'verticalfarming', 'veganuk', 'vegancheesemaking', 'Veganivore', 'recycling', 'todayilearned', 'mildlyinteresting', 'worldnews', 'politics', 'NoStupidQuestions', 'science', 'news', 'nutrition', 'interestingasfuck', 'explainlikeimfive', 'Futurology', 'Thatsactuallyverycool'])
+file_to_subreddits = "../data/selected_subreddits.csv"
+
+subreddits = []
+
+with open(file_to_subreddits, mode='r', newline='') as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip the header row
+    for row in reader:
+        subreddit = row[0].replace('r/', '').strip()  # Get the subreddit name without 'r/'
+        subreddits.append(subreddit)
+
+selected_subreddits = set(subreddits)
 
 filter_list_kw = ["milk", "meat", "beef", "pork", "chicken", "chickens", "soy", "dairy", "turkey", "turkeys", "egg", "eggs", "fish", "poultry", "burger", "burgers", "sausage", "sausages", "yogurt", "yoghurt", "yogurts", "yoghurts", "tofu", "veal", "lamb", "steak", "steaks", "cheese", "cheeses", "mutton"]
 
@@ -76,7 +87,7 @@ def simple_filter(line):
     except Exception as e:
         print(e)
         return None
-    if "subreddit" in json_obj and json_obj["subreddit"] in SELECTED_SUBREDDITS:
+    if "subreddit" in json_obj and json_obj["subreddit"] in selected_subreddits:
         if "created_utc" in json_obj and int(json_obj["created_utc"]) >= 1262304000:
             tokenized = word_tokenize(json_obj["body"].lower())
             if any(tok in filter_list_kw for tok in tokenized):
