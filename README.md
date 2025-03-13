@@ -89,6 +89,11 @@ The data is merged to allow diachronic and diastratic comparisons.
 ```
 2. corpus_sutyd/merge_pmw.py
 ```
+For each of the two diachronic and one diastratic analyses, we detect words that have undergone a frequency increase of above 2 Standard Deviations above the mean.
+
+```
+3. corpus_sutyd/candidate_words_detection.py
+```
 
 ## Lexical Semantic Change Detection Experiments:
 
