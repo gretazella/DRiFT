@@ -50,9 +50,11 @@ Comments containing "i am a bot" or shorter than three words are also removed.
 1. preprocessing/cleaning_comments.py
 ```
 
-One jsonl file is created for each subreddit-year combination.
+Separate files are created to group comments that belong to the same subreddit.
 
-2.
+```
+2. preprocessing/create_sub_files.py
+```
 
 3. Lexical Semantic Change Detection Experiments:
 
