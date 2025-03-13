@@ -6,7 +6,7 @@ import os
 # Dictionary to keep track of the number of files written for each subreddit-year combination
 file_count = {}
 
-def create_sub_year_files(input_folder):
+def create_sub_files(input_folder):
     # Iterate through each file in the input directory
     for filename in sorted(os.listdir(input_folder)):
         file_path = os.path.join(input_folder, filename)
@@ -40,4 +40,4 @@ def create_sub_year_files(input_folder):
                 with gzip.open(output_path, 'wt', encoding='utf-8') as out_file:
                     group.to_json(out_file, orient='records', lines=True)
 
-create_sub_year_files(input_folder)
+create_sub_files(input_folder)
