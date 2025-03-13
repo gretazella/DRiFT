@@ -11,11 +11,13 @@ import zstandard
 from jsonlines import Writer
 from tqdm import tqdm
 
-file_to_subreddits = "../data/selected_subreddits.csv"
+subreddits_file = "../data/selected_subreddits.csv"
+keywords_file = "../data/policy_documents_keywords.csv"
 
 subreddits = []
+keywords = []
 
-with open(file_to_subreddits, mode='r', newline='') as file:
+with open(subreddits_file, mode='r', newline='') as file:
     reader = csv.reader(file)
     next(reader)  # Skip the header row
     for row in reader:
@@ -24,7 +26,10 @@ with open(file_to_subreddits, mode='r', newline='') as file:
 
 selected_subreddits = set(subreddits)
 
-filter_list_kw = ["milk", "meat", "beef", "pork", "chicken", "chickens", "soy", "dairy", "turkey", "turkeys", "egg", "eggs", "fish", "poultry", "burger", "burgers", "sausage", "sausages", "yogurt", "yoghurt", "yogurts", "yoghurts", "tofu", "veal", "lamb", "steak", "steaks", "cheese", "cheeses", "mutton"]
+with open(keywords_file, mode='r', newline='') as file:
+    reader = csv.DictReader(file)  # Using DictReader to read the column by name
+    for row in reader:
+        keywords.append(row['keyword'])  # Add each keyword to the list
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
@@ -90,7 +95,7 @@ def simple_filter(line):
     if "subreddit" in json_obj and json_obj["subreddit"] in selected_subreddits:
         if "created_utc" in json_obj and int(json_obj["created_utc"]) >= 1262304000:
             tokenized = word_tokenize(json_obj["body"].lower())
-            if any(tok in filter_list_kw for tok in tokenized):
+            if any(tok in keywords for tok in tokenized):
                 return json_obj
             else:
                 return None
