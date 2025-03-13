@@ -5,7 +5,7 @@ Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts 
 
 ## Data
 
-The folder "data" contains the initial list of keywords retreived from policy documents and the selected subreddits.
+The "data" folder contains the initial list of keywords retreived from policy documents and the selected subreddits.
 
 1.
 ```
