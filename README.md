@@ -50,22 +50,29 @@ Comments containing "i am a bot" or shorter than three words are also removed.
 1. preprocessing/cleaning_comments.py
 ```
 
-Separate files are created to group comments that belong to the same subreddit.
+Separate files are created to group comments that belong to the same subreddit and year, numbering them progressively.
 
 ```
 2. preprocessing/create_sub_files.py
 ```
 
-Each subreddit-year combination is grouped together into one file.
+Files representing same subreddits and years are grouped together into one unique file.
 
 ```
 3. preprocessing/merge_sub_year_combinations.py
 ```
+GENERIC and SUSTAINABLE communities are in turn created by merging subreddit files.
 
-3. Lexical Semantic Change Detection Experiments:
+```
+4. preprocessing/merge_communities.py
+```
+
+## Bigrams: Corpus Study
+
+## Lexical Semantic Change Detection Experiments:
 
 The experiments on Lexical Semantic Change Detections are based on the code from: https://github.com/SanneHoeken/LSVD/tree/main.
 
-4. Connotation Experiments:
+## Connotation Experiments:
 
 The experiments on connotation are based on the code from: https://github.com/valeriobasile/connhyp/tree/main.o
