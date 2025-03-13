@@ -79,10 +79,15 @@ Finally, time slots t0 and t1, as well as whole communities' corpora are created
 
 ## Corpus Study: Bigram Analysis
 
-Per million word (pmw) frequency distributions are calculated for our keywords.
+Per million word (pmw) frequency distributions are calculated for our keywords in each corpus.
 
 ```
 1. corpus_sutyd/pmw.py
+```
+The data is merged to allow diachronic and diastratic comparisons.
+
+```
+2. corpus_sutyd/merge_pmw.py
 ```
 
 ## Lexical Semantic Change Detection Experiments:
