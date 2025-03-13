@@ -41,3 +41,4 @@ def create_sub_files(input_folder):
                     group.to_json(out_file, orient='records', lines=True)
 
 create_sub_files(input_folder)
+input_folder = ""
