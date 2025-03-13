@@ -7,27 +7,30 @@ stopwords = ['i', 'myself', 'does', 'further', 'both', 'y', 'aren', 'won', 'me',
 all_files = os.listdir(input_folder)
 filtered_files.sort()
 
-for file in all_files:
-    df = pd.read_csv(file_path)
-    list_of_changes = []
-    
-    for index, row in df.iterrows():
-        if row['word'] not in stopwords:
-            list_of_changes.append(row['change'])   
-    
-    mean = np.mean(list_of_changes)
-    print("Mean:", mean)
-    
-    std_dev = np.std(list_of_changes)
-    print("Standard Deviation:", std_dev)
-    
-    threshold = mean+(std_dev*2)
-    
-    with open(file.split('.')[0].csv", 'w') as outfile:
-        writer = csv.writer(outfile)
-        writer.writerow(["candidate", "change"])
-    
-        for index, row in df.iterrows():
-            if row['word'] not in stopwords:
-                if row['change'] >= threshold:
-                    writer.writerow([row['word'], row['change']])
+def candidate_words_detection(input_folder, output_folder)
+        for file in all_files:
+            df = pd.read_csv(file_path)
+            list_of_changes = []
+            
+            for index, row in df.iterrows():
+                if row['word'] not in stopwords:
+                    list_of_changes.append(row['change'])   
+            
+            mean = np.mean(list_of_changes)
+            print("Mean:", mean)
+            
+            std_dev = np.std(list_of_changes)
+            print("Standard Deviation:", std_dev)
+            
+            threshold = mean+(std_dev*2)
+            
+            with open(output_folder+file.split('.')[0].csv", 'w') as outfile:
+                writer = csv.writer(outfile)
+                writer.writerow(["candidate", "change"])
+            
+                for index, row in df.iterrows():
+                    if row['word'] not in stopwords:
+                        if row['change'] >= threshold:
+                            writer.writerow([row['word'], row['change']])
+
+candidate_words_detection(input_folder, output_folder)
