@@ -1,35 +1,36 @@
 import pandas as pd
 import os
 
-input_folder = "/home/p311477/Desktop/milk_project/DH_project/comments_year_sub/"
-output_folder = "/home/p311477/Desktop/milk_project/DH_project/subreddit_year_corpora/"
-
-# Iterate through each file in the input directory
-for filename in os.listdir(input_folder):
-    file_path = os.path.join(input_folder, filename)
-    if os.path.isfile(file_path) and filename.endswith('.jsonl.gz'):
-        # Extract subreddit and year from the filename
-        subreddit, year = filename.split('_')[:2]
-        
-        # Name output filename
-        output_filename = f"{category}_{year}.json"
-        output_path = os.path.join(output_folder, output_filename)
-        
-        # Check if the merged file already exists
-        if os.path.isfile(output_path):
-            # File already exists, append data to the existing file
-            with open(output_path, 'a') as f:
-                
-                # Read and append data to the merged file
+def merge_sub_years(input_folder):
+    # Iterate through each file in the input directory
+    for filename in os.listdir(input_folder):
+        file_path = os.path.join(input_folder, filename)
+        if os.path.isfile(file_path) and filename.endswith('.jsonl.gz'):
+            # Extract subreddit and year from the filename
+            subreddit, year = filename.split('_')[:2]
+            
+            # Name output filename
+            output_filename = f"{category}_{year}.json"
+            output_path = os.path.join(output_folder, output_filename)
+            
+            # Check if the merged file already exists
+            if os.path.isfile(output_path):
+                # File already exists, append data to the existing file
+                with open(output_path, 'a') as f:
+                    
+                    # Read and append data to the merged file
+                    try:
+                        df = pd.read_json(file_path, lines=True)
+                        df.to_json(f, orient='records', lines=True)
+                    except pd.errors.EmptyDataError:
+                        print(f"Warning: Empty file encountered: {file_path}")
+            else:
+                # File doesn't exist, create a new file
                 try:
-                    df = pd.read_json(file_path, lines=True)
-                    df.to_json(f, orient='records', lines=True)
+                    df = pd.read_json(file_path, lines = True)
+                    df.to_json(output_path, orient='records', lines=True)
                 except pd.errors.EmptyDataError:
                     print(f"Warning: Empty file encountered: {file_path}")
-        else:
-            # File doesn't exist, create a new file
-            try:
-                df = pd.read_json(file_path, lines = True)
-                df.to_json(output_path, orient='records', lines=True)
-            except pd.errors.EmptyDataError:
-                print(f"Warning: Empty file encountered: {file_path}")
+
+merge_sub_years(input_folder)
+input_folder=""
