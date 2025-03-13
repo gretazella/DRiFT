@@ -67,7 +67,7 @@ GENERIC and SUSTAINABLE communities are in turn created by merging subreddit fil
 4. preprocessing/merge_communities.py
 ```
 
-## Bigrams: Corpus Study
+## Corpus Study: Bigram Analysis
 
 ## Lexical Semantic Change Detection Experiments:
 
