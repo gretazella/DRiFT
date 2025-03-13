@@ -39,6 +39,6 @@ def create_sub_files(input_folder):
                 output_path = os.path.join(output_folder, output_filename)
                 with gzip.open(output_path, 'wt', encoding='utf-8') as out_file:
                     group.to_json(out_file, orient='records', lines=True)
-
-create_sub_files(input_folder)
 input_folder = ""
+create_sub_files(input_folder)
+
