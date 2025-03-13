@@ -3,6 +3,11 @@ or DAIReS: Dairy Alternatives in Reddit Subs
 
 Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts as a Thermometer of Social Change.
 
+## Data
+
+The folder "data" contains the initial list of keywords retreived from policy documents and the selected subreddits.
+It also contains the list of unwatned keywords, extracted from the _noise_ random sample (see paper), as well as the lists of neonyms and retronyms with relative frequencies on which the bigram analysis was performed.
+
 ## Data Collection
 
 Data collection was performed based on the code taken and adapted from: https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/combine_folder_multiprocess.py.
