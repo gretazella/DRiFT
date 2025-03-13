@@ -18,7 +18,7 @@ def pmw(input_folder, output_folder):
     for f in all_files:
         with open(output_folder+f.split('.')[0] +'_keywords_frequency.csv', 'w') as csv_outfile:
             writer = csv.writer(csv_outfile)
-            writer.writerow(["content word", "pmw", "raw frequency"])
+            writer.writerow(["word", "pmw", "raw frequency"])
             
             df = pd.read_csv(input_folder+f)        
             words = []
