@@ -56,6 +56,12 @@ Separate files are created to group comments that belong to the same subreddit.
 2. preprocessing/create_sub_files.py
 ```
 
+Each subreddit-year combination is grouped together into one file.
+
+```
+3. preprocessing/merge_sub_year_combinations.py
+```
+
 3. Lexical Semantic Change Detection Experiments:
 
 The experiments on Lexical Semantic Change Detections are based on the code from: https://github.com/SanneHoeken/LSVD/tree/main.
