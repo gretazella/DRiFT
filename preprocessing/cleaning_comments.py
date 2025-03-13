@@ -61,7 +61,7 @@ def cleaning(input_folder, output_folder):
                             json_obj["body"] = re.sub('\t', ' ', json_obj["body"])
     
                         # Removing every character that is not a letter (including numbers) 
-                        comment_without_punctuation = re.sub(r"[^a-zA-Z\u00C0-\u00FF-_]," ",json_obj['body'])
+                        comment_without_punctuation = re.sub(r"[^\w\s_-]|(?<!\w)[_-]|[_-](?!\w)"," ",json_obj['body'])
                         
                         # Counting number of tokens excluding punctiation                         
                         sent_tokens = sent_tokenize(comment_without_punctuation)
