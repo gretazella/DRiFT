@@ -6,7 +6,17 @@ Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts 
 ## Data
 
 The folder "data" contains the initial list of keywords retreived from policy documents and the selected subreddits.
-It also contains the list of unwatned keywords, extracted from the _noise_ random sample (see paper), as well as the lists of neonyms and retronyms with relative frequencies on which the bigram analysis was performed.
+
+1.
+```
+data/policy_documents_keyowrds.csv
+```
+2. 
+```
+data/selected_subreddits.csv
+```
+
+It also contains the list of unwatned keywords, extracted from the _noise_ random sample (see paper), as well as neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
 
 ## Data Collection
 
