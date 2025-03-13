@@ -79,6 +79,12 @@ Finally, time slots t0 and t1, as well as whole communities' corpora are created
 
 ## Corpus Study: Bigram Analysis
 
+Per million word (pmw) frequency distributions are calculated for our keywords.
+
+```
+1. corpus_sutyd/pmw.py
+```
+
 ## Lexical Semantic Change Detection Experiments:
 
 The experiments on Lexical Semantic Change Detections are based on the code from: https://github.com/SanneHoeken/LSVD/tree/main.
