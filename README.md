@@ -94,6 +94,11 @@ For each of the two diachronic and one diastratic analyses, we detect words that
 ```
 3. corpus_sutyd/candidate_words_detection.py
 ```
+Bigrams are retrieved based on raw frequency.
+
+```
+4. corpus_sutyd/bigrams.py
+```
 
 ## Lexical Semantic Change Detection Experiments:
 
