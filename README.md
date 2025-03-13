@@ -18,6 +18,19 @@ data/selected_subreddits.csv
 
 It also contains the list of unwatned keywords, extracted from the _noise_ random sample (see paper), as well as neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
 
+3.
+```
+data/noise.csv
+```
+4. 
+```
+data/neonyms.csv
+```
+5. 
+```
+data/retronyms.csv
+```
+
 ## Reddit Data Collection
 
 Data collection was performed based on the code taken and adapted from: https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/combine_folder_multiprocess.py.
