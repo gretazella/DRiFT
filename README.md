@@ -32,26 +32,13 @@ Corpora for diachronic (t0 and t1) and diastratic analyses are created.
 
 ### Corpus Study
 
-Per million word (pmw) frequency distributions are calculated for our keywords in each corpus.
+Per million word (pmw) frequency distributions are calculated for our keywords in each corpus. Candidate words are selected based on increase in frequency.
 
 ```
-4. scripts/pmw.py
+4. scripts/candidate_word_detection.py
 ```
-The data is merged to allow diachronic and diastratic comparisons.
 
-```
-5. scripts/merge_pmw.py
-```
-For each of the two diachronic and one diastratic analyses, we detect words that have undergone a frequency increase of above 2 Standard Deviations above the mean.
-
-```
-6. scripts/candidate_words_detection.py
-```
-Bigrams are retrieved based on raw frequency.
-
-```
-7. scripts/bigrams.py
-```
+to be added: bigrams statistics.
 
 ## Lexical Semantic Change Detection Experiments:
 
@@ -59,6 +46,6 @@ The experiments on Lexical Semantic Change Detections are based on the code from
 
 ## Connotation Experiments:
 
-to be added: script to replace neonyms and retronyms with placeholders.
+to be added: neonyms and retronyms are replaced with placeholders.
 
 The experiments on connotation are based on the code from: https://github.com/valeriobasile/connhyp/tree/main.o
