@@ -100,6 +100,10 @@ def main(input_path, output_path)
     list_of_files.sort()
     os.makedirs(output_path, exist_ok=True)
     file_num = 0
+    
+    # Dictionary to keep track of the number of files written for each subreddit-year combination
+    file_count = {}
+    
     for raw_file in list_of_files:
         cleaning(raw_file)
     
