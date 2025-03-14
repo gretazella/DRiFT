@@ -108,6 +108,12 @@ def cleaning(raw_file):
                     # Removing \t
                     while '\t' in json_obj['body']:
                         json_obj["body"] = re.sub('\t', ' ', json_obj["body"])
+                    # Removing \n
+                    while '\n' in json_obj['body']:
+                        json_obj["body"] = re.sub('\n', ' ', json_obj["body"])
+                    # Removing \r
+                    while '\r' in json_obj['body']:
+                        json_obj["body"] = re.sub('\r', ' ', json_obj["body"])
 
                     # Removing every character that is not a letter (including numbers) 
                     comment_without_punctuation = re.sub(r"[^\w\s_-]|(?<!\w)[_-]|[_-](?!\w)"," ",json_obj['body'])
