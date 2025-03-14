@@ -36,7 +36,7 @@ def merge_communities(input_path, f, output_path):
 def main(input_path, output_path):
   
     # Retrieve selected subreddits
-    df = pd.read_csv("selected_subreddits.csv")
+    df = pd.read_csv("../data/selected_subreddits.csv")
     
     # Create the dictionary with community as key and list of subreddits as values
     communities = {}
