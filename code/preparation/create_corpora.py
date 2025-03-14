@@ -71,6 +71,8 @@ def create_diastratic_corpora(input_path, f, output_path):
                 try:
                     df = pd.read_json(input_path+f, lines = True)
                     with open(output_path+output_filename, 'w', encoding='utf-8') as output_file:
+                        print(df)
+                        exit()
                         df.to_json(output_file, orient='records', lines=True)
                 except pd.errors.EmptyDataError:
                     print(f"Warning: Empty file encountered: {input_path+f}")
@@ -85,7 +87,7 @@ def main(input_path, output_path):
         create_diachronic_corpora(input_path, f, output_path)
 
 # Retrieve selected subreddits
-df = pd.read_csv("../data/selected_subreddits.csv")
+df = pd.read_csv("selected_subreddits.csv")
 
 # Create the dictionary with community as key and list of subreddits as values
 communities = {}
