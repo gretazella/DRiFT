@@ -5,76 +5,29 @@ Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts 
 
 ## Data
 
-The "data" folder contains the initial list of keywords retreived from policy documents and the selected subreddits.
+The "data" folder contains a sample of raw data collected from reddit, the initial list of keywords retreived from policy documents, the selected subreddits, and a list of noisy keywords/phrases that were removed. It also contains neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
 
-1.
-```
-data/policy_documents_keyowrds.csv
-```
-2. 
-```
-data/selected_subreddits.csv
-```
+## Scripts
 
-It also contains the list of unwatned keywords, extracted from the _noise_ random sample (see paper), as well as neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
-
-3.
-```
-data/noise.csv
-```
-4. 
-```
-data/neonyms.csv
-```
-5. 
-```
-data/retronyms.csv
-```
-
-## Reddit Data Collection
+For each of the following scripts, set the parameters inside of the code first. 
 
 Data collection was performed based on the code taken and adapted from: https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/combine_folder_multiprocess.py.
 The code creates a new zst. file every 100.000 lines, numbering them progressively. 
 
 ```
-data_collection/parallel_process.py
+1. scripts/data_collection.py
 ```
 
-## Preprocessing
-
-Emojis are converted to text, usernames, subreddits' mentions, urls and emails are replaced with placeholders. 
-Tab and html characters, as well as numbers, extra white space and other characters outside letters from a to z are removed.
-Comments containing "i am a bot" or shorter than three words are also removed.
+Comments are pre-processed and grouped by same subreddit and year. 
 
 ```
-1. preprocessing/cleaning_comments.py
+2. scripts/preprocessing.py
 ```
 
-Separate files are created to group comments that belong to the same subreddit and year, numbering them progressively.
+Corpora for diachronic (to and t1) and diastratic analyses are created.
 
 ```
-2. preprocessing/create_sub_files.py
-```
-
-Files representing same subreddits and years are grouped together into one unique file.
-
-```
-3. preprocessing/merge_sub_year_combinations.py
-```
-GENERIC and SUSTAINABLE communities are in turn created by merging subreddit files.
-
-```
-4. preprocessing/merge_communities.py
-```
-Comments containing noise are removed.
-
-```
-5. preprocessing/remove_noisy_kw.py
-```
-Finally, time slots t0 and t1, as well as whole communities' corpora are created, by merging years of the same subreddits.
-
-```
-6. preprocessing/create_corpora.py
+3. scripts/create_corpora.py
 ```
 
 ## Corpus Study: Bigram Analysis
