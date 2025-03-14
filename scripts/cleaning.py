@@ -10,7 +10,35 @@ import io
 import pandas as pd
 from tqdm import tqdm
 
-def create_sub_files(cleaned_file, output_path):
+def merge_sub_years(intermediate_file,output_path):
+    print('Creating one file for each subreddit-year combination')
+    # Extract subreddit and year from the filename
+    subreddit, year = intermediate_file.split('_')[:2]
+    
+    # Name output filename
+    output_filename = intermediate_file"{subreddit}_{year}.json"
+    
+    # Check if the merged file already exists
+    if os.path.isfile(output_path+output_filename):
+        # File already exists, append data to the existing file
+        with open(output_path+output_filename, 'a') as output_file:
+            
+            # Read and append data to the merged file
+            try:
+                df = pd.read_json(intermediate_file, lines=True)
+                df.to_json(output_file, orient='records', lines=True)
+            except pd.errors.EmptyDataError:
+                print(f"Warning: Empty file encountered: {file_path}")
+    else:
+        # File doesn't exist, create a new file
+        try:
+            df = pd.read_json(intermediate_file, lines = True)
+            with open(output_path+output_filename, 'w') as output_file:
+                df.to_json(output_file, orient='records', lines=True)
+        except pd.errors.EmptyDataError:
+            print(f"Warning: Empty file encountered: {file_path}")
+
+def create_sub_files(cleaned_file, intermediate_path):
     print('Combining subreddits and years')
     df = pd.read_json(cleaned_file, lines=True)
   
@@ -31,12 +59,12 @@ def create_sub_files(cleaned_file, output_path):
         # counter
         counter_str = str(file_count[(subreddit, year)]).zfill(3)
         
-        # Naming output file
-        output_filename = f"{subreddit}_{year}_{counter_str}.jsonl.gz"
+        # Naming intermediate file
+        intermediate_filename = f"{subreddit}_{year}_{counter_str}.jsonl.gz"
         
         # Write group to jsonl file
-        with gzip.open(output_path+output_filename, 'wt', encoding='utf-8') as output_file:
-            group.to_json(output_file, orient='records', lines=True)
+        with gzip.open(intermediate_path+intermediate_filename, 'wt', encoding='utf-8') as intermediate_file:
+            group.to_json(intermediate_file, orient='records', lines=True)
 
 def cleaning(raw_file):
     temp_file = io.StringIO()
@@ -98,14 +126,20 @@ def cleaning(raw_file):
                         temp_file.write(json.dumps(json_obj) + "\n")
     
     temp_file.seek(0)
-    create_sub_files(temp_file, output_path)
+    create_sub_files(temp_file, intermediate_path)
 
-def main(input_path, output_path):
-    list_of_files = [raw_file for raw_file in os.listdir(input_path)]
-    list_of_files.sort()
-    os.makedirs(output_path, exist_ok=True)    
-    for f in tqdm(list_of_files):
+def main(input_path, intermediate_path, output_path):
+    # Cleaning files and grouping subreddits and years
+    list_of_raw_files = [raw_file for raw_file in os.listdir(input_path)]
+    list_of_raw_files.sort()
+    os.makedirs(intermediate_path, exist_ok=True)    
+    for f in tqdm(list_of_raw_files):
         cleaning(f)
+
+    # Merging subreddits
+    list_of_cleaned_files = [raw_file for raw_file in os.listdir(intermediate_path)]
+    for f in tqdm(list_of_cleaned_files):
+        merge_sub_years(f, output_path)
     
 
 if __name__ == '__main__':   
@@ -116,6 +150,7 @@ if __name__ == '__main__':
     file_count = {}
 
     input_path = '[path to directory containing jsonl.gz files with one comment per line]'
-    output_path = '[path to directory where progressively numbered, cleaned subreddit_year files are saved]'
+    intermediate_path = '[path to directory where progressively numbered, cleaned subreddit_year files are saved]'
+    output_path = '[path to directory where one unique file for each subreddit-year combination is stored]'
 
-    
+    main(input_path, intermediate_path, output_path)
