@@ -152,7 +152,7 @@ if __name__ == '__main__':
     file_count = {}
 
     input_path = '[path to directory containing jsonl.gz files with one comment per line]'
-    intermediate_path = '[path to directory where progressively numbered, cleaned subreddit_year files are saved]'
-    output_path = '[path to directory where one unique file for each subreddit-year combination is stored]'
+    intermediate_path = '[path to directory where progressively numbered, cleaned subreddit_year jsonl.gz files are saved]'
+    output_path = '[path to directory where one unique json file for each subreddit-year combination is stored]'
 
     main(input_path, intermediate_path, output_path)
