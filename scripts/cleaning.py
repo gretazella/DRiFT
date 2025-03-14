@@ -11,6 +11,7 @@ import pandas as pd
 from tqdm import tqdm
 
 def create_sub_files(cleaned_file, output_path):
+    print('Combining subreddits and years')
     df = pd.read_json(cleaned_file, lines=True)
   
     # Convert 'created_utc' from epoch time to datetime
@@ -42,6 +43,7 @@ def cleaning(raw_file):
     
     # Clean the jsonl file
     with gzip.open(input_path+raw_file, 'rt', encoding='utf-8') as input_file:
+        print('Cleaning file')
         for line in input_file:
             json_obj = json.loads(line)
             
@@ -49,7 +51,7 @@ def cleaning(raw_file):
                 pass
             else:                    
                 if "i am a bot" not in json_obj["body"].lower():
-                        
+
                     # Converting emojis
                     json_obj["body"] = demojize(json_obj["body"])                        
     
@@ -96,7 +98,7 @@ def cleaning(raw_file):
                         temp_file.write(json.dumps(json_obj) + "\n")
     
     temp_file.seek(0)
-    create_sub_files(temp_file)
+    create_sub_files(temp_file, output_path)
 
 def main(input_path, output_path):
     list_of_files = [raw_file for raw_file in os.listdir(input_path)]
