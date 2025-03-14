@@ -59,4 +59,6 @@ The experiments on Lexical Semantic Change Detections are based on the code from
 
 ## Connotation Experiments:
 
+to be added: script to replace neonyms and retronyms with placeholders.
+
 The experiments on connotation are based on the code from: https://github.com/valeriobasile/connhyp/tree/main.o
