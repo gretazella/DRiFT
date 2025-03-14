@@ -12,7 +12,7 @@ The "data" folder contains a sample of raw data collected from reddit, the initi
 For each of the following scripts, set the parameters inside of the code first. 
 
 Data collection was performed based on the code taken and adapted from: https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/combine_folder_multiprocess.py.
-The code creates a new zst. file every 100.000 lines, numbering them progressively. 
+The code creates a new jsonl.gz file every 100.000 lines, numbering them progressively. 
 
 ```
 1. scripts/data_collection.py
