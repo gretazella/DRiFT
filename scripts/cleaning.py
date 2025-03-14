@@ -140,7 +140,6 @@ def main(input_path, intermediate_path, output_path):
     list_of_cleaned_files = [raw_file for raw_file in os.listdir(intermediate_path)]
     os.makedirs(output_path, exist_ok=True)  
     for f in tqdm(list_of_cleaned_files):
-        print(f)
         merge_sub_years(intermediate_path, f, output_path)
     
 
