@@ -5,7 +5,7 @@ Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts 
 
 ## Data
 
-The "data" folder contains a sample of raw data collected from reddit, the initial list of keywords retreived from policy documents, the selected subreddits, and a list of noisy keywords/phrases that were removed. It also contains neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
+The "data" folder contains a sample of raw data collected from Reddit, the initial list of keywords retreived from policy documents, the selected subreddits, and a list of noisy keywords/phrases that were removed. It also contains neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
 
 ## Scripts
 
