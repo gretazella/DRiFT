@@ -8,6 +8,7 @@ from nltk import word_tokenize
 from emoji import demojize
 import io
 import pandas as pd
+from tqdm import tqdm
 
 def create_sub_files(cleaned_file, output_path):
     df = pd.read_json(cleaned_file, lines=True)
@@ -101,7 +102,7 @@ def main(input_path, output_path):
     list_of_files = [raw_file for raw_file in os.listdir(input_path)]
     list_of_files.sort()
     os.makedirs(output_path, exist_ok=True)    
-    for f in list_of_files:
+    for f in tqdm(list_of_files):
         cleaning(f)
     
 
