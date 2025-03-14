@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from tqdm import tqdm
 
 # Iterate through each file in the input directory
 def merge_communities(input_path, f, output_path):
