@@ -95,7 +95,7 @@ def cleaning(input_path):
     temp_file.seek(0)
     create_sub_files(temp_file)
 
-def main(input_path, output_path)
+def main(input_path, output_path):
     list_of_files = [raw_file for raw_file in os.listdir(input_path)]
     list_of_files.sort()
     os.makedirs(output_path, exist_ok=True)
