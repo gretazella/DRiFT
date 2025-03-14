@@ -32,11 +32,7 @@ Corpora for diachronic (t0 and t1) and diastratic analyses are created.
 
 ### Corpus Study
 
-Per million word (pmw) frequency distributions are calculated for our keywords in each corpus. Candidate words are selected based on increase in frequency.
-
-```
-4. scripts/candidate_word_detection.py
-```
+to be added: frequency distributions are calculated and candidate words are selected based on them.
 
 to be added: bigrams statistics.
 
