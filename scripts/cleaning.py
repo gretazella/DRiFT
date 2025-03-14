@@ -6,6 +6,8 @@ import re
 from nltk.tokenize import sent_tokenize
 from nltk import word_tokenize
 from emoji import demojize
+import io
+import pandas as pd
 
 def create_sub_files(cleaned_file, output_path):
     df = pd.read_json(cleaned_file, lines=True)
@@ -34,7 +36,7 @@ def create_sub_files(cleaned_file, output_path):
         with gzip.open(output_path+output_filename, 'wt', encoding='utf-8') as output_file:
             group.to_json(output_file, orient='records', lines=True)
 
-def cleaning(input_path):
+def cleaning(raw_file):
     temp_file = io.StringIO()
     
     # Clean the jsonl file
@@ -98,17 +100,18 @@ def cleaning(input_path):
 def main(input_path, output_path):
     list_of_files = [raw_file for raw_file in os.listdir(input_path)]
     list_of_files.sort()
-    os.makedirs(output_path, exist_ok=True)
+    os.makedirs(output_path, exist_ok=True)    
+    for f in list_of_files:
+        cleaning(f)
+    
+
+if __name__ == '__main__':   
+    # Numbering files progressively
     file_num = 0
     
     # Dictionary to keep track of the number of files written for each subreddit-year combination
     file_count = {}
-    
-    for raw_file in list_of_files:
-        cleaning(raw_file)
-    
 
-if __name__ == '__main__':
     input_path = '[path to directory containing jsonl.gz files with one comment per line]'
     output_path = '[path to directory where progressively numbered, cleaned subreddit_year files are saved]'
 
