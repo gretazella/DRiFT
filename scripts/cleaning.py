@@ -10,13 +10,13 @@ import io
 import pandas as pd
 from tqdm import tqdm
 
-def merge_sub_years(intermediate_file,output_path):
-    
+def merge_sub_years(intermediate_path,intermediate_file,output_path):
+    print('Creating one file for each subreddit-year combination')
     # Extract subreddit and year from the filename
     subreddit, year = intermediate_file.split('_')[:2]
     
     # Name output filename
-    output_filename = intermediate_file"{subreddit}_{year}.json"
+    output_filename = f"{subreddit}_{year}.json"
     
     # Check if the merged file already exists
     if os.path.isfile(output_path+output_filename):
@@ -25,21 +25,21 @@ def merge_sub_years(intermediate_file,output_path):
             
             # Read and append data to the merged file
             try:
-                df = pd.read_json(intermediate_file, lines=True)
+                df = pd.read_json(intermediate_path+intermediate_file, lines=True)
                 df.to_json(output_file, orient='records', lines=True)
             except pd.errors.EmptyDataError:
-                print(f"Warning: Empty file encountered: {file_path}")
+                print(f"Warning: Empty file encountered: {intermediate_file}")
     else:
         # File doesn't exist, create a new file
         try:
-            df = pd.read_json(intermediate_file, lines = True)
+            df = pd.read_json(intermediate_path+intermediate_file, lines = True)
             with open(output_path+output_filename, 'w') as output_file:
                 df.to_json(output_file, orient='records', lines=True)
         except pd.errors.EmptyDataError:
-            print(f"Warning: Empty file encountered: {file_path}")
+            print(f"Warning: Empty file encountered: {intermediate_file}")
 
 def create_sub_files(cleaned_file, intermediate_path):
-    
+    print('Combining subreddits and years')
     df = pd.read_json(cleaned_file, lines=True)
   
     # Convert 'created_utc' from epoch time to datetime
@@ -71,7 +71,7 @@ def cleaning(raw_file):
     
     # Clean the jsonl file
     with gzip.open(input_path+raw_file, 'rt', encoding='utf-8') as input_file:
-        
+        print('Cleaning file')
         for line in input_file:
             json_obj = json.loads(line)
             
@@ -129,7 +129,6 @@ def cleaning(raw_file):
     create_sub_files(temp_file, intermediate_path)
 
 def main(input_path, intermediate_path, output_path):
-    print('Cleaning files and splitting subreddits and years...')
     # Cleaning files and grouping subreddits and years
     list_of_raw_files = [raw_file for raw_file in os.listdir(input_path)]
     list_of_raw_files.sort()
@@ -137,11 +136,13 @@ def main(input_path, intermediate_path, output_path):
     for f in tqdm(list_of_raw_files):
         cleaning(f)
 
-    print('Merging same subreddits and years')
     # Merging subreddits
     list_of_cleaned_files = [raw_file for raw_file in os.listdir(intermediate_path)]
+    os.makedirs(output_path, exist_ok=True)  
     for f in tqdm(list_of_cleaned_files):
-        merge_sub_years(intermediate_path+f, output_path)
+        print(f)
+        merge_sub_years(intermediate_path, f, output_path)
+    
 
 if __name__ == '__main__':   
     # Numbering files progressively
