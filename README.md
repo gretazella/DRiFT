@@ -7,6 +7,8 @@ Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts 
 
 The "data" folder contains a sample of raw data collected from Reddit, the initial list of keywords retreived from policy documents, the selected subreddits, and a list of noisy keywords/phrases that were removed. It also contains neonyms and retronyms with relative pmw frequencies on which the bigram analysis was performed.
 
+The automatic search for keywords on Reddit was based on the code from: https://github.com/okkyibrohim/getreddit/blob/main/getsubreddits.py.
+
 ## Scripts
 
 For each of the following scripts, set the parameters inside of the code first. 
@@ -44,4 +46,6 @@ The experiments on Lexical Semantic Change Detections are based on the code from
 
 to be added: neonyms and retronyms are replaced with placeholders.
 
-The experiments on connotation are based on the code from: https://github.com/valeriobasile/connhyp/tree/main.o
+The experiments on connotation are based on the code from: https://github.com/valeriobasile/connhyp/tree/main.
+
+The complete list of positive and negative seed words are added to the "data" folder.
