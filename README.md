@@ -1,5 +1,4 @@
 # DRIFT: Debate on Reddit Involving Food Transition
-or DAIReS: Dairy Alternatives in Reddit Subs
 
 Repository for the paper: "Dairy Milk" or "Plant-based Milk”? Language Shifts as a Thermometer of Social Change.
 
