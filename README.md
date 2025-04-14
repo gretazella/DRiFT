@@ -13,7 +13,7 @@ The automatic search for keywords on Reddit was based on the code from: https://
 For each of the following scripts, set the parameters inside of the code first. 
 
 Data collection was performed based on the code taken and adapted from: https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/combine_folder_multiprocess.py.
-The code creates a new jsonl.gz file every 100.000 lines, numbering them progressively. 
+The code collects comments to posts from selected subreddits, and it creates a new jsonl.gz file every 100.000 lines, numbering them progressively. Posts themselves were not collected because they were not retrievable using Pushshift API at the time of our data collection.
 
 ```
 1. scripts/data_collection.py
