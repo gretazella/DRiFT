@@ -31,9 +31,13 @@ Corpora for diachronic (t0 and t1) and diastratic analyses are created.
 3. scripts/create_corpora.py
 ```
 
-### Corpus Study
+## Corpus Study
 
-to be added: frequency distributions are calculated and candidate words are selected based on them.
+Per million word frequency is calculated for each word in the corpora.
+
+1. scripts/calculate_pmw.py
+
+to be added: candidate words are selected based on word frequencies.
 
 to be added: bigrams statistics.
 
