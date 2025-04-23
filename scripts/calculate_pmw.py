@@ -15,7 +15,7 @@ def calculate_pmw(input_path, output_path):
 
     for f in files:
         
-        with open(f.split('.')[0] +'_words_frequency.csv', 'w', newline='', encoding='utf-8') as csv_outfile:
+        with open(output_path+f.split('.')[0] +'_words_frequency.csv', 'w', newline='', encoding='utf-8') as csv_outfile:
             writer = csv.writer(csv_outfile)
             if '2010' in f:
                 timeframe = 't0'
