@@ -35,9 +35,14 @@ Corpora for diachronic (t0 and t1) and diastratic analyses are created.
 
 Per million word frequency is calculated for each word and compared across corpora to detect candidate keywords based on frequency increase.
 
+```
 1. scripts/detect_candidate_keywords.py
+```
+Bigrams and their pmw frequencies are detected and calculated.
 
-to be added: bigrams statistics.
+```
+2. scripts/bigrams.py
+```
 
 ## Lexical Semantic Change Detection Experiments:
 
