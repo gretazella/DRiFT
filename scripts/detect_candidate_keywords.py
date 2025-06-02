@@ -34,7 +34,7 @@ def detect_candidate_words(df1_2,initial_keywords,output_path):
     print("Threshold:", threshold)             
     
     # Writing all candidate words to csv
-    with open(output_path+"candidates_for_semantic_change_sustainable_test_280425.csv", 'w') as outfile:
+    with open(output_path+"candidates_for_semantic_change_sustainable.csv", 'w') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(["candidate", "change"])
 
