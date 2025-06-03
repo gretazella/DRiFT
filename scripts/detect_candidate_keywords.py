@@ -14,7 +14,7 @@ import numpy as np
 stop_words = set(stopwords.words('english'))
 stop_words.update(["also", "even", "often"])
 
-def detect_candidate_words(df1_2,initial_keywords,output_path):
+def detect_candidate_words(df1_2,word_list,output_path):
     
     candidate_words = []
     freq_change = []
@@ -34,7 +34,7 @@ def detect_candidate_words(df1_2,initial_keywords,output_path):
     print("Threshold:", threshold)             
     
     # Writing all candidate words to csv
-    with open(output_path+"candidates_for_semantic_change_sustainable.csv", 'w') as outfile:
+    with open(output_path+"candidates_for_semantic_change_sustainable_test_280425.csv", 'w') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(["candidate", "change"])
 
@@ -43,7 +43,7 @@ def detect_candidate_words(df1_2,initial_keywords,output_path):
                 if row['frequency change'] >= threshold:
 
                     # Finding candidate words among the manually selected keywords
-                    if row['word'] in initial_keywords:
+                    if row['word'] in word_list:
                         candidate_words.append(row['word'])
                         writer.writerow([row['word'], row['frequency change']])
     
@@ -64,7 +64,11 @@ def compare_frequencies(df1,df2):
     # Calculate difference in frequency between t1 and t0
     df1_2['frequency change'] = df1_2['pmw t1'] - df1_2['pmw t0']
 
-    detect_candidate_words(df1_2,initial_keywords,output_path)
+    with open(initial_keywords, 'r') as file:
+        word_list = [line.strip() for line in file]
+    print(word_list)
+
+    detect_candidate_words(df1_2,word_list,output_path)
 
 def calculate_pmw(input_path,community):
 
@@ -120,7 +124,7 @@ def calculate_pmw(input_path,community):
     compare_frequencies(df1,df2)
 
 community = 'sustainable' # Communities
-initial_keywords = "../data/policy_documents_keywords.csv" # keywords to be tested for frequency increase
+initial_keywords = "../data/policy_documents_keywords.txt" # keywords to be tested for frequency increase
 
 input_path = '[path to directory containing csv files with one comment per line]'
 output_path = '[path to directory where csv files with final candidate words and pmw frequencies for each corpus are stored]'
